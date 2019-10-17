@@ -41,26 +41,27 @@ class mainScene {
 	}
 
 	update() {
+		const SPEED = 30;
 		// Handle horizontal movements
 		if (this.arrow.right.isDown) {
 			//矢印に合わせて画像を回転
 			this.player.setTexture('rightPlayer');
 			// If the right arrow is pressed, move to the r
-			this.player.x += 15;
+			this.player.x += SPEED;
 		} else if (this.arrow.left.isDown) {
 			//矢印に合わせて画像を回転
 			this.player.setTexture('leftPlayer');
 			// If the left arrow is pressed, move to the left
-			this.player.x -= 15;
+			this.player.x -= SPEED;
 		}
 
 		// Do the same for vertical movements
 		if (this.arrow.down.isDown) {
 			this.player.setTexture('downPlayer');
-			this.player.y += 15;
+			this.player.y += SPEED;
 		} else if (this.arrow.up.isDown) {
 			this.player.setTexture('upPlayer');
-			this.player.y -= 15;
+			this.player.y -= SPEED;
 		}
 
 		//衝突処理
