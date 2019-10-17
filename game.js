@@ -41,7 +41,7 @@ class mainScene {
 	}
 
 	update() {
-		const SPEED = 30;
+		const SPEED = 15;
 		// Handle horizontal movements
 		if (this.arrow.right.isDown) {
 			//矢印に合わせて画像を回転
