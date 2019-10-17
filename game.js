@@ -4,8 +4,8 @@ const SCORE_POINT = 3000000;
 
 class mainScene {
 	preload() {
-		this.load.image('player', 'assets/player.png');
-		this.load.image('coin', 'assets/coin.png');
+		this.load.image('player', 'assets/rightMasaki.png');
+		this.load.image('coin', 'assets/otasaku.png');
 	}
 
 	create() {
@@ -42,7 +42,7 @@ class mainScene {
 
 	hit() {
 
-		this.coin.x = Phaser.Math.Between(100, 600);
+		this.coin.x = Phaser.Math.Between(80, 500);
 		this.coin.y = Phaser.Math.Between(100, 300);
 
 		this.score += SCORE_POINT;
@@ -67,3 +67,5 @@ new Phaser.Game({
 	physics: { default: 'arcade' },
 	parent: 'game',
 });
+
+//TODO EDにまさきの歌を流す
