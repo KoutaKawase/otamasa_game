@@ -1,4 +1,7 @@
 "use strict";
+//ヒット時に加算されるボーナスポイント
+const SCORE_POINT = 3000000;
+
 class mainScene {
 	preload() {
 		this.load.image('player', 'assets/player.png');
@@ -38,10 +41,11 @@ class mainScene {
 	}
 
 	hit() {
+
 		this.coin.x = Phaser.Math.Between(100, 600);
 		this.coin.y = Phaser.Math.Between(100, 300);
 
-		this.score += 10;
+		this.score += SCORE_POINT;
 
 		this.scoreText.setText('score: ' + this.score);
 
