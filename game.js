@@ -2,7 +2,7 @@
 //ヒット時に加算されるボーナスポイント
 const SCORE_POINT = 3000000;
 
-const whenGetSounds = ['getSound1.mp3', 'getSound2.mp3', 'getSound3.mp3'];
+const whenGetSounds = ['getSound1.mp3', 'getSound2.mp3', 'getSound3.mp3', 'getSound4.mp3'];
 
 class mainScene {
 	preload() {
@@ -66,7 +66,7 @@ class mainScene {
 
 		//衝突処理
 		if (this.physics.overlap(this.player, this.coin)) {
-			const randomNum = Math.floor(Math.random() * (3 - 1)) + 1;
+			const randomNum = Math.floor(Math.random() * (5 - 1)) + 1;
 			const getSound = this.sound.add('getSound' + randomNum.toString());
 			getSound.play({
 				volume: 0.3,
