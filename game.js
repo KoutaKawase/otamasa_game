@@ -16,7 +16,7 @@ class mainScene {
 		whenGetSounds.map((value, index) => {
 			this.load.audio('getSound' + (index + 1), 'assets/audio/' + value);
 		});
-		//alert("ゲームを開始します");
+		alert("ゲームを開始します");
 	}
 
 	create() {
@@ -31,6 +31,13 @@ class mainScene {
 		this.bgm.setLoop(true);
 		this.bgm.volume = 0.03;
 		this.bgm.play();
+
+		//制限時間
+		this.initialTime = 30;
+		//制限時間を表示
+		this.timeText = this.add.text(20, 43, 'countdown: ' + this.initialTime + '秒', style);
+		//1秒ごとに減らす
+		this.timedEvent = this.time.addEvent({ delay: 1000, callback: this.onEvent, callbackScope: this, loop: true });
 	}
 
 	update() {
@@ -65,6 +72,13 @@ class mainScene {
 			});
 			this.hit();
 		}
+
+		//0秒になったら終了
+		if (this.initialTime === 0) {
+			this.timedEvent.callback = null;
+			this.timeText.setText("終了");
+			this.bgm.stop();
+		}
 	}
 
 	hit() {
@@ -83,6 +97,15 @@ class mainScene {
 			scaleY: 1.2,
 			yoyo: true,
 		});
+	}
+
+	onEvent() {
+		this.initialTime -= 1;
+		this.timeText.setText('countdown: ' + this.initialTime + '秒');
+
+		if (this.initialTime === 0) {
+			alert("あなたのスコアは: " + this.score + "点です！");
+		}
 	}
 }
 
