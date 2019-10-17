@@ -46,21 +46,21 @@ class mainScene {
 			//矢印に合わせて画像を回転
 			this.player.setTexture('rightPlayer');
 			// If the right arrow is pressed, move to the r
-			this.player.x += 10;
+			this.player.x += 20;
 		} else if (this.arrow.left.isDown) {
 			//矢印に合わせて画像を回転
 			this.player.setTexture('leftPlayer');
 			// If the left arrow is pressed, move to the left
-			this.player.x -= 10;
+			this.player.x -= 20;
 		}
 
 		// Do the same for vertical movements
 		if (this.arrow.down.isDown) {
 			this.player.setTexture('downPlayer');
-			this.player.y += 10;
+			this.player.y += 20;
 		} else if (this.arrow.up.isDown) {
 			this.player.setTexture('upPlayer');
-			this.player.y -= 10;
+			this.player.y -= 20;
 		}
 
 		//衝突処理
