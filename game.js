@@ -2,6 +2,8 @@
 //ヒット時に加算されるボーナスポイント
 const SCORE_POINT = 3000000;
 
+const whenGetSounds = ['getSound1.mp3', 'getSound2.mp3', 'getSound3.mp3'];
+
 class mainScene {
 	preload() {
 		this.load.image('rightPlayer', 'assets/rightMasaki.png');
@@ -9,6 +11,12 @@ class mainScene {
 		this.load.image('upPlayer', 'assets/upMasaki.png');
 		this.load.image('downPlayer', 'assets/downMasaki.png');
 		this.load.image('coin', 'assets/otasaku.png');
+		this.load.audio('bgm', 'assets/audio/bgm.mp3');
+
+		whenGetSounds.map((value, index) => {
+			this.load.audio('getSound' + (index + 1), 'assets/audio/' + value);
+		});
+		//alert("ゲームを開始します");
 	}
 
 	create() {
@@ -18,6 +26,11 @@ class mainScene {
 		let style = { font: '20px Arial', fill: '#fff' };
 		this.scoreText = this.add.text(20, 20, 'score: ' + this.score, style);
 		this.arrow = this.input.keyboard.createCursorKeys();
+
+		this.bgm = this.sound.add('bgm');
+		this.bgm.setLoop(true);
+		this.bgm.volume = 0.03;
+		this.bgm.play();
 	}
 
 	update() {
@@ -25,7 +38,7 @@ class mainScene {
 		if (this.arrow.right.isDown) {
 			//矢印に合わせて画像を回転
 			this.player.setTexture('rightPlayer');
-			// If the right arrow is pressed, move to the right
+			// If the right arrow is pressed, move to the r
 			this.player.x += 5;
 		} else if (this.arrow.left.isDown) {
 			//矢印に合わせて画像を回転
@@ -45,6 +58,11 @@ class mainScene {
 
 		//衝突処理
 		if (this.physics.overlap(this.player, this.coin)) {
+			const randomNum = Math.floor(Math.random() * (3 - 1)) + 1;
+			const getSound = this.sound.add('getSound' + randomNum.toString());
+			getSound.play({
+				volume: 0.3,
+			});
 			this.hit();
 		}
 	}
